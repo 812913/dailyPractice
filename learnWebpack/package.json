@@ -1,0 +1,27 @@
+{
+  "name": "learnwebpack",
+  "version": "1.0.0",
+  "description": "learn webpack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/812913/dailyPractice.git"
+  },
+  "keywords": [
+    "practice",
+    "wepack"
+  ],
+  "author": "virgo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/812913/dailyPractice/issues"
+  },
+  "homepage": "https://github.com/812913/dailyPractice#readme",
+  "devDependencies": {
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.14"
+  }
+}
