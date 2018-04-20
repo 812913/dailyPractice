@@ -1,0 +1,10 @@
+/* @value colors:"./colors.css";
+@value blue,red,green from colors; */
+.root{
+    /* composes:className from "./another.css"; */
+    border: 3px solid red;
+    transform: skew(45deg);
+}
+/* :global(.root){
+    border: 5px solid #ccc;
+} */
