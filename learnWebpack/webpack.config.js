@@ -1,6 +1,6 @@
 //const path=require('path');
 const webpack=require("webpack");
-const HTmlWebpackPlugin=require("html-webpack-plugin");
+const HtmlWebpackPlugin=require("html-webpack-plugin");
 
 module.exports={
     devtool:'eval-source-map',//生成source maps，使调试更容易
@@ -16,34 +16,27 @@ module.exports={
         historyApiFallback:true,//开发单页面时非常有用。如果设置为true，所有的跳转将指向index.html
         hot:true
     },
-    module:{
-        rules:[
+    module: {
+        rules: [
             {
-                test:/(\.jsx|\.js)$/,//必须，一个用以匹配loaders所处理文件的拓展名的正则表达式
-                use:{
-                    loader:"babel-loader",//loader的名称
-                    options:{
-                        presets:[
-                            "env","react"
-                        ]
-                    }
+                test: /(\.jsx|\.js)$/,
+                use: {
+                    loader: "babel-loader"
                 },
-                exclude:/node_modules///屏蔽不需要处理的文件
-            },{
-                test:/\.css$/,
-                use:[
+                exclude: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                use: [
                     {
-                        loader:"style-loader"
-                    },
-                    {
-                        loader:"css-loader",
-                        options:{
-                            modules:true,//是否启用css modules
-                            localIdentName:'[name]__[local]--[hash:base64:5]'//指定css的类名格式
+                        loader: "style-loader"
+                    }, {
+                        loader: "css-loader",
+                        options: {
+                            modules: true
                         }
-                    },
-                    {
-                        loader:"postcss-loader"
+                    }, {
+                        loader: "postcss-loader"
                     }
                 ]
             }
@@ -51,12 +44,13 @@ module.exports={
     },
     plugins: [
         new webpack.BannerPlugin('版权所有，翻版必究'),
-        new HTmlWebpackPlugin({
-            template:__dirname+'/src/index.tmpl.html'
+        new HtmlWebpackPlugin({
+            template: __dirname + "/src/index.tmpl.html"//new 一个这个插件的实例，并传入相关的参数
         }),
-        new webpack.HotModuleReplacementPlugin()//热加载插件
-      ]
+       new webpack.HotModuleReplacementPlugin()//热加载插件
+    ],
 };
+
 //console.log(__dirname);//c:\Users\15928\Desktop\Practice\dailyPractice\learnWebpack
 //console.log(module.exports.output.path);//c:\Users\15928\Desktop\Practice\dailyPractice\learnWebpack/dist
-console.log(__dirname+'/src/index.tmpl.html');
+//console.log(__dirname+'/src/index.tmpl.html');
