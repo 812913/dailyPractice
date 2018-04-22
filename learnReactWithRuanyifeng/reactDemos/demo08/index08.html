@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <script src="http://localhost:8097"></script>
+        <script src="../build/react.js"></script><!--react核心库-->
+        <script src="../build/react-dom.js"></script><!--提供与DOM相关的功能-->
+        <script src="../build/browser.min.js"></script><!--将JSX语法转化为JavaScript的语法-->
+    </head>
+    <body>
+        <div id="root">
+
+        </div>
+
+        <script type="text/babel">//使用JSX
+            var LikeButton=React.createClass({
+                getInitialState:function(){
+                    return {liked:false};
+                },
+                handleClick: function(event) {
+                    this.setState({liked: !this.state.liked});
+                },
+                render:function(){
+                    var text = this.state.liked ? 'like' : 'haven\'t liked';//this.state用于描述随用户互动变化的特性
+                    return (
+                      <p onClick={this.handleClick}>
+                        You {text} this.click to toggle
+                        </p>
+                    );
+                }
+            });
+
+           ReactDOM.render(<LikeButton/>,document.getElementById("root"));
+        </script>
+    </body>
+</html>

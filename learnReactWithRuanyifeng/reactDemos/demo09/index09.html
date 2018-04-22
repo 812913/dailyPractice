@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <script src="http://localhost:8097"></script>
+        <script src="../build/react.js"></script><!--react核心库-->
+        <script src="../build/react-dom.js"></script><!--提供与DOM相关的功能-->
+        <script src="../build/browser.min.js"></script><!--将JSX语法转化为JavaScript的语法-->
+    </head>
+    <body>
+        <div id="root">
+
+        </div>
+
+        <script type="text/babel">//使用JSX
+           var Input=React.createClass({
+               getInitialState:function(){
+                   return {value:'Hello!'};
+               },
+               handleChange:function(event){
+                   this.setState({value:event.target.value});
+               },
+               render:function(){
+                   var value=this.state.value;
+                   return(
+                       <div>
+                            <input type="text" value={value} onChange={this.handleChange}/>
+                            <p>{value}</p>
+                        </div>
+                   )
+               }
+           });
+
+           ReactDOM.render(<Input/>,document.getElementById('root'));
+        </script>
+    </body>
+</html>

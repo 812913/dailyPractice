@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <script src="http://localhost:8097"></script>
+        <script src="../build/react.js"></script><!--react核心库-->
+        <script src="../build/react-dom.js"></script><!--提供与DOM相关的功能-->
+        <script src="../build/browser.min.js"></script><!--将JSX语法转化为JavaScript的语法-->
+    </head>
+    <body>
+        <div id="root">
+
+        </div>
+
+        <script type="text/babel">//使用JSX
+            var HelloMessage=React.createClass({//生成组件类,组件类的第一个字母必须大写，必须包含一个顶级标签
+                render:function() {//必须有render方法，用于输出组件
+                    return <h1>Hello {this.props.name}</h1>
+                }
+            });
+            ReactDOM.render(<HelloMessage name="lwf"/>,document.getElementById('root'));
+        </script>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <script src="http://localhost:8097"></script>
+        <script src="../build/react.js"></script><!--react核心库-->
+        <script src="../build/react-dom.js"></script><!--提供与DOM相关的功能-->
+        <script src="../build/browser.min.js"></script><!--将JSX语法转化为JavaScript的语法-->
+    </head>
+    <body>
+        <div id="root">
+
+        </div>
+
+        <script type="text/babel">//使用JSX
+            // var MyTitle=React.createClass({
+            //     propTypes:{//用来检验组件类实例的属性是否符合要求
+            //         title:React.PropTypes.string.isRequired,
+            //     },
+            //     render:function(){
+            //         return <h1>{this.props.title}</h1>
+            //     }
+            // })
+
+            // var date=123;
+            // ReactDOM.render(<MyTitle title={date}/>,document.getElementById('root'));
+
+             var MyTitle=React.createClass({
+               getDefaultProps:function(){//用来设置组件属性的默认值
+                   return{
+                       title:'Hello world'
+                   };
+               },
+                render:function(){
+                    return <h1>{this.props.title}</h1>
+                }
+            })
+
+            var date=123;
+            ReactDOM.render(<MyTitle/>,document.getElementById('root'));
+        </script>
+    </body>
+</html>
