@@ -4,20 +4,90 @@
          <script src="http://localhost:8097"></script>
         <script src="../build/react.js"></script><!--react核心库-->
         <script src="../build/react-dom.js"></script><!--提供与DOM相关的功能-->
-        <script src="../build/browser.min.js"></script><!--将JSX语法转化为JavaScript的语法-->
+        <script src="../build/browser.min.js"></script><!--将JSX语法转化为JavaScript的语法,这一步非常耗时，实际上线可以放在服务器端来做-->
     </head>
     <body>
         <div id="root">
 
         </div>
 
-        <script type="text/babel">//使用JSX
-            var HelloMessage=React.createClass({//生成组件类,组件类的第一个字母必须大写，必须包含一个顶级标签
-                render:function() {//必须有render方法，用于输出组件
-                    return <h1>Hello {this.props.name}</h1>
+        <script type="text/babel">
+        //创建组件1
+            // var HelloMessage=React.createClass({//生成组件类,组件类的第一个字母必须大写，必须包含一个顶级标签
+            //     render:function() {//必须有render方法，用于输出组件
+            //         return <h1>Hello {this.props.name}</h1>//JSX语法
+            //     }
+            // });
+            // ReactDOM.render(<HelloMessage name="lwf"/>,document.getElementById('root'));
+
+        //创建组件2
+            // function Button(props){
+            //     return <button type="submit">{props.label}</button>
+            // }
+            // ReactDOM.render(<Button label="submit"/>,document.getElementById("root"));
+        //创建组件3
+                class Button extends React.Component{//顶级层级API
+                    render(){
+                      return  <button>{this.props.save}</button>//返回virtual DOM对象，注意有this：当组件实例化的时候，每一个实力都有一个专有的实例属性props传给组件实例
+                    }
                 }
-            });
-            ReactDOM.render(<HelloMessage name="lwf"/>,document.getElementById('root'));
+                ReactDOM.render(<Button save="保存"/>,document.getElementById("root"));
+
+
+            // function Button(props){
+            //     return React.createElement("button",{type:"submit"},props.label);//React.createElement:React顶级API的主要函数
+            // };
+            // ReactDOM.render(React.createElement(Button,{label:"Save"}),document.getElementById("root"));
+
+            // const InputForm=React.createElement(
+            //     "form",
+            //     {target:"_blank",action:"https://google.com/search"},
+            //     React.createElement("div",null,"Enter input and click Search"),
+            //     React.createElement("input",{class:"big-input"}),
+            //     React.createElement(Button,{label:"search"})
+            // );
+            // function Button(props){
+            //     return React.createElement("button",{type:"submit"},props.label)
+            // };
+
+            // ReactDOM.render(InputForm,document.getElementById("root"));
+
+            //  const InputForm=
+            //     <form target="_blank" action="https://google.com/search">
+            //         <div>Enter input and click search</div>
+            //         <input className="big-inut"/>
+            //         <Button label="search"/>
+            //     </form>
+            // function Button(props){
+            //     return <button type="submit">{props.label}</button>
+            // };
+
+            // ReactDOM.render(InputForm,document.getElementById("root"));
+
+            // const ErrorDisplay=({message})=>
+            //     <div style={{color:'red',backgroundColor:'yellow'}}>
+            //         {message}
+            //     </div>;
+
+            //     ReactDOM.render(<ErrorDisplay message="this is message"/>,document.getElementById("root"));
+
+            // const MaybeError=({errorMessage})=>
+            //     <div>
+            //         {errorMessage&&<ErrorDisplay message={errorMessage}/>}
+            //     </div>;
+
+            //  const ErrorDisplay=({message})=>
+            //     <div style={{color:'red',backgroundColor:'yellow'}}>
+            //         {message}
+            //     </div>;
+
+            //     ReactDOM.render(<MaybeError errorMessage={Math.random()>0.5?'Not good':''}/>,document.getElementById("root"));
+
+            // const Doubler=({values=[1,2,3]})=>
+            //     <div>
+            //         {values.map(e=>e*2)}
+            //     </div>
+            // ReactDOM.render(<Doubler/>,document.getElementById("root"));
         </script>
     </body>
 </html>
