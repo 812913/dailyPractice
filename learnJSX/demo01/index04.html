@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>使用条件操作符的内联 If-Else</title>
+        <script src="../build/react.js"></script>
+        <script src="../build/react-dom.js"></script>
+        <script src="../build/browser.min.js"></script>        
+    </head>
+    <body>
+        <div id="root">
+
+        </div>
+
+       <script type="text/babel">
+            const LoginOut=React.createClass({
+                render(){
+                    var isLogged=this.props.isLogged;
+                    return (
+                        <div>Now you state is {isLogged=="true"?"Logged in":"Logged out"}</div>
+                    )
+                }
+            })
+
+            
+            ReactDOM.render(<LoginOut isLogged="true"/>,document.getElementById("root"));
+        </script>
+    </body>
+</html>

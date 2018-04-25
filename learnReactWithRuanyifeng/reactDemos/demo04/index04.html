@@ -13,12 +13,12 @@
 
         <script type="text/babel">
         //创建组件1
-            // var HelloMessage=React.createClass({//生成组件类,组件类的第一个字母必须大写，必须包含一个顶级标签
-            //     render:function() {//必须有render方法，用于输出组件
-            //         return <h1>Hello {this.props.name}</h1>//JSX语法
-            //     }
-            // });
-            // ReactDOM.render(<HelloMessage name="lwf"/>,document.getElementById('root'));
+            var HelloMessage=React.createClass({//生成组件类,组件类的第一个字母必须大写，必须包含一个顶级标签
+                render:function() {//必须有render方法，用于输出组件
+                    return <h1>Hello {this.props.name}</h1>//JSX语法
+                }
+            });
+            ReactDOM.render(<HelloMessage name="lwf"/>,document.getElementById('root'));
 
         //创建组件2
             // function Button(props){
@@ -26,14 +26,55 @@
             // }
             // ReactDOM.render(<Button label="submit"/>,document.getElementById("root"));
         //创建组件3
-                class Button extends React.Component{//顶级层级API
-                    render(){
-                      return  <button>{this.props.save}</button>//返回virtual DOM对象，注意有this：当组件实例化的时候，每一个实力都有一个专有的实例属性props传给组件实例
-                    }
-                }
-                ReactDOM.render(<Button save="保存"/>,document.getElementById("root"));
+                // class Button extends React.Component{//顶级层级API
+                //     render(){
+                //       return  <button>{this.props.save}</button>//返回virtual DOM对象，注意有this：当组件实例化的时候，每一个实力都有一个专有的实例属性props传给组件实例
+                //     }
+                // }
+                // ReactDOM.render(<Button save="保存"/>,document.getElementById("root"));
 
+                // class Button extends React.Component{//顶级层级API
+                //     constructor(props){
+                //         super(props);
+                //         this.id=Date.now();
+                //     }
 
+                //     render(){
+                //       return <button id={this.id}>{this.props.label}</button>//返回virtual DOM对象，注意有this：当组件实例化的时候，每一个实力都有一个专有的实例属性props传给组件实例
+                //     }
+                // }
+                // ReactDOM.render(<Button label="保存"/>,document.getElementById("root"));
+
+                // class Button extends React.Component{
+                //     clickCount=0;//类域语法，省去了构造函数
+                //     handleClick=()=>{//类域语法
+                //         console.log(`Clicked:${++this.clickCount}`)
+                //     };
+                //     render(){
+                //         return (//注意所有的react元素属性都使用驼峰命名而不是小写，如onClick
+                //             <button id={this.id} onClick={this.handleClick}>
+                //                 {this.props.label}
+                //             </button>
+                //         );
+                //     }
+                // }
+                // ReactDOM.render(<Button label="save"/>,document.getElementById('root'));
+
+                // class Form extends React.Component{
+                //     handleSubmit=(event)=>{
+                //         event.preventDefault();
+                //         console.log('Form submitted');
+                //     };
+                //     render(){
+                //         return (
+                //             <form onSubmit={this.handleSubmit}>
+                //                 <button type="sumit">submit</button>
+                //             </form>
+                //         );
+                //     }
+                // }
+                // ReactDOM.render(<Form/>,document.getElementById('root'));
+              
             // function Button(props){
             //     return React.createElement("button",{type:"submit"},props.label);//React.createElement:React顶级API的主要函数
             // };
