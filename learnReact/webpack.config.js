@@ -1,0 +1,60 @@
+const webpack=require("webpack");
+const htmlWebpackPlugin=require("html-webpack-html");
+module.exports={
+    entry:"./src/main.js",
+    output:{
+        path:__dirname+"/public",
+        fileName:"bundle.js"
+    },
+    devtool:"eval-source-map",
+    mode:"development",
+    devServer:{
+        contentBase:"./public",
+        port:"8080",
+        inline:true,
+        historyApiFallback:true,
+        hot:true
+    },
+    module:{
+        rules:[{
+            test:/(\.jsx|\.js)$/,
+            use:{
+                loader:"babel-loader",
+                exclude:/node-modules/
+            }
+        },{
+            test:/\.css$/,
+            use:[
+                {
+                    loader:"style-loader",
+                },
+                {
+                    loader:"css-loader",
+                    options:{
+                        modules:true,
+                        localIdentName:'[name]__[local]--[hash:base64:5]'
+                    }
+                },
+                {
+                    loader:"postcss-loader"
+                }
+            ]
+        },{
+            test:/\.(png|jpg)$/,
+            use:[{
+                loader:"url-loader",
+                options:{
+                    limit:8192
+                }
+            }]
+        }
+        ]
+    },
+    plugins:[
+        new webpack.BannerPlugin("版权所有，翻版必究"),
+        new webpack.htmlWebpackPlugin({
+            template:__dirname+"src/index.tmpl"
+        }),
+        new webpack.HotModuleReplacementPlugin()
+    ]
+}
