@@ -1,15 +1,15 @@
 const webpack=require("webpack");
-const htmlWebpackPlugin=require("html-webpack-html");
+const htmlWebpackPlugin=require("html-webpack-plugin");
 module.exports={
-    entry:"./src/main.js",
+    entry:"./src/main.jsx",
     output:{
-        path:__dirname+"/public",
-        fileName:"bundle.js"
+        path:__dirname+"/build",
+        filename:"bundle.js"
     },
     devtool:"eval-source-map",
     mode:"development",
     devServer:{
-        contentBase:"./public",
+        contentBase:"./build",
         port:"8080",
         inline:true,
         historyApiFallback:true,
@@ -20,8 +20,8 @@ module.exports={
             test:/(\.jsx|\.js)$/,
             use:{
                 loader:"babel-loader",
-                exclude:/node-modules/
-            }
+            },
+            exclude:/node-modules/
         },{
             test:/\.css$/,
             use:[
@@ -52,9 +52,11 @@ module.exports={
     },
     plugins:[
         new webpack.BannerPlugin("版权所有，翻版必究"),
-        new webpack.htmlWebpackPlugin({
-            template:__dirname+"src/index.tmpl"
+        new htmlWebpackPlugin({
+            template:__dirname+"/src/index.tmpl.html"
         }),
         new webpack.HotModuleReplacementPlugin()
     ]
 }
+
+//console.log(__dirname);//c:\Users\15928\Desktop\Practice\dailyPractice\learnReact
