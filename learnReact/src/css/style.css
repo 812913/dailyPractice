@@ -4,8 +4,22 @@
     box-sizing: border-box;
 }
 body{
-    font-size: 16px;
+    padding: 10px;
 }
-.greeting{
+/* .greeting{
     color: goldenrod;
+} */
+/* .fancyBorder{
+    border:2px solid;
 }
+.fancyBorder-blue{
+    border-color: blue;
+}
+:global(.Dialog-title){
+    font-size: 18px;
+    color: blue;
+}
+:global(.Dialog-message){
+    font-size: 18px;
+    color:red;
+} */
