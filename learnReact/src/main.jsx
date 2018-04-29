@@ -1,9 +1,32 @@
 const React=require("react");
 const ReactDOM=require("react-dom");
+const createReatClass=require("create-react-class");
+//const h=require("react-hyperscript");
+const h=require("react-hyperscript");
+const {div,span,h1}=require("hyperscript-helpers")(h);
 
 const style=require("./css/style.css");
 const config=require("./json/config");
 const userImg=require("./img/user.png");
+
+function Htest(){
+        return div('#main',"hyperscript helpers");
+}
+ReactDOM.render(<Htest/>,document.getElementById("root"));
+
+// var Htest=createReatClass({
+//     render(){
+//         return (
+//             h("div.example",[
+//                 h('h1#heading','This is hyperscript'),
+//                 h('h2','create React.js markup')
+//             ])
+//         )
+//     }
+// })
+// ReactDOM.render(<Htest/>,document.getElementById("root"));
+
+
 //ReactDOM.render("Hello world",document.getElementById("root"));
 
 // let user={
@@ -498,104 +521,256 @@ const userImg=require("./img/user.png");
 // ReactDOM.render(<SignUpDialog/>,document.getElementById("root"));
 
 //可搜索的产品数据表格
-class ProductCategoryRow extends React.Component{
-   render(){
-     return <tr><th colSpan="2">{this.props.category}</th></tr>;
-       }
-}
-class ProductRow extends React.Component{
-    render(){
-        let name=this.props.product.stocked?this.props.product.name:<span style={{color:"red"}}>{this.props.product.name}</span>
-        return (
-            <tr>
-                <td>{name}</td>
-                <td>{this.props.product.price}</td>
-            </tr>
-        )
-    }
-}
+// class ProductCategoryRow extends React.Component{
+//    render(){
+//      return <tr><th colSpan="2">{this.props.category}</th></tr>;
+//        }
+// }
+// class ProductRow extends React.Component{
+//     render(){
+//         let name=this.props.product.stocked?this.props.product.name:<span style={{color:"red"}}>{this.props.product.name}</span>
+//         return (
+//             <tr>
+//                 <td>{name}</td>
+//                 <td>{this.props.product.price}</td>
+//             </tr>
+//         )
+//     }
+// }
 
-class ProductTable extends React.Component{
-    render(){
-        var rows=[];
-        var lastCategory=null;
-        this.props.products.forEach((product) => {
-            if (product.name.indexOf(this.props.filterText) === -1 || (!product.stocked && this.props.inStockOnly)) {
-              return;
-            }
-            if (product.category !== lastCategory) {
-              rows.push(<ProductCategoryRow category={product.category} key={product.category} />);
-            }
-            rows.push(<ProductRow product={product} key={product.name} />);
-            lastCategory = product.category;
-          });
-        return (
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Price</th> 
-                    </tr>
-                </thead>
-                <tbody>
-                    {rows}
-                    </tbody>
-                </table>
-        )
-    }
-}
+// class ProductTable extends React.Component{
+//     render(){
+//         var rows=[];
+//         var lastCategory=null;
+//         this.props.products.forEach((product) => {
+//             if (product.name.indexOf(this.props.filterText) === -1 || (!product.stocked && this.props.inStockOnly)) {
+//               return;
+//             }
+//             if (product.category !== lastCategory) {
+//               rows.push(<ProductCategoryRow category={product.category} key={product.category} />);
+//             }
+//             rows.push(<ProductRow product={product} key={product.name} />);
+//             lastCategory = product.category;
+//           });
+//         return (
+//             <table>
+//                 <thead>
+//                     <tr>
+//                         <th>Name</th>
+//                         <th>Price</th> 
+//                     </tr>
+//                 </thead>
+//                 <tbody>
+//                     {rows}
+//                     </tbody>
+//                 </table>
+//         )
+//     }
+// }
 
-class SearchBar extends React.Component{
-    constructor(props){
-        super(props);
-        this.handleFilterTextChange=this.handleFilterTextChange.bind(this);
-        this.handleInSockOnlyChange=this.handleInSockOnlyChange.bind(this);
-    }
-    handleFilterTextChange(e){
-        this.props.onFilterText(e.target.value)
-    }
-    handleInSockOnlyChange(e){
-        this.props.onInSockOnly(e.target.checked)
-    }
-    render(){
-        return (
-            <form>
-                <input type="text" placeholder="Searching ..." value={this.props.filterText} onChange={this.handleFilterTextChange}/>
-                <p><input type="checkbox" checked={this.props.inStockOnly} onChange={this.handleInSockOnlyChange}/>{' '}Only show products in stock</p>
-                </form>
-        )
-    }
-}
+// class SearchBar extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.handleFilterTextChange=this.handleFilterTextChange.bind(this);
+//         this.handleInSockOnlyChange=this.handleInSockOnlyChange.bind(this);
+//     }
+//     handleFilterTextChange(e){
+//         this.props.onFilterText(e.target.value)
+//     }
+//     handleInSockOnlyChange(e){
+//         this.props.onInSockOnly(e.target.checked)
+//     }
+//     render(){
+//         return (
+//             <form>
+//                 <input type="text" placeholder="Searching ..." value={this.props.filterText} onChange={this.handleFilterTextChange}/>
+//                 <p><input type="checkbox" checked={this.props.inStockOnly} onChange={this.handleInSockOnlyChange}/>{' '}Only show products in stock</p>
+//                 </form>
+//         )
+//     }
+// }
 
-class FilterableProductTable extends React.Component{
-    constructor(props){
-        super(props);
-        this.state={filterText:'',inStockOnly:false};
-        this.handleFilterText=this.handleFilterText.bind(this);
-        this.handleInSockOnly=this.handleInSockOnly.bind(this);
-    }
-    handleFilterText(filterText){
-        this.setState({filterText:filterText})
-    }
-    handleInSockOnly(inStockOnly){
-        this.setState({inStockOnly:inStockOnly})
-    }
-    render(){
-        return(
-            <div>
-            <SearchBar filterText={this.state.filterText} inStockOnly={this.state.inStockOnly} onFilterText={this.handleFilterText} onInSockOnly={this.handleInSockOnly}/>
-            <ProductTable products={this.props.products}  filterText={this.state.filterText} inStockOnly={this.state.inStockOnly} />
-        </div>
-        )
-    }
-}
+// class FilterableProductTable extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.state={filterText:'',inStockOnly:false};
+//         this.handleFilterText=this.handleFilterText.bind(this);
+//         this.handleInSockOnly=this.handleInSockOnly.bind(this);
+//     }
+//     handleFilterText(filterText){
+//         this.setState({filterText:filterText})
+//     }
+//     handleInSockOnly(inStockOnly){
+//         this.setState({inStockOnly:inStockOnly})
+//     }
+//     render(){
+//         return(
+//             <div>
+//             <SearchBar filterText={this.state.filterText} inStockOnly={this.state.inStockOnly} onFilterText={this.handleFilterText} onInSockOnly={this.handleInSockOnly}/>
+//             <ProductTable products={this.props.products}  filterText={this.state.filterText} inStockOnly={this.state.inStockOnly} />
+//         </div>
+//         )
+//     }
+// }
 
-let PRODUCTS= [
-    {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
-    {category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball'},
-    {category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball'},
-    {category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch'},
-    {category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
-    {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
-  ];
- ReactDOM.render(<FilterableProductTable products={PRODUCTS}/>,document.getElementById("root")); 
+// let PRODUCTS= [
+//     {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
+//     {category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball'},
+//     {category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball'},
+//     {category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch'},
+//     {category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
+//     {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
+//   ];
+//  ReactDOM.render(<FilterableProductTable products={PRODUCTS}/>,document.getElementById("root")); 
+
+// class CustomTextInput extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.focus=this.focus.bind(this);
+//     }
+//     focus(){
+//         this.textInput.focus();
+//     }
+//     render(){
+//         return (
+//             <div>
+//                 <input type="text" ref={(input)=>{this.textInput=input;}}/>
+//                 <input type="button" value="Focus the text input" onClick={this.focus}/>
+//                 </div>
+//         )
+//     }
+// }
+
+// class AutoFocusTextInput extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.textInput=React.createRef();
+//     }
+//     componentDidMount(){
+//         this.textInput.current.focusTextInput();
+//     }
+//     render(){
+//         return (
+//             <CustomTextInput ref={this.textInput}/>
+//         )
+//     }
+// }
+// ReactDOM.render(<CustomTextInput/>,document.getElementById("root"));
+
+// function CustomTextInput(props){
+//     let textInput=null;
+//     function handleClick(){
+//         textInput.focus();
+//     }
+//     return (
+//         <div>
+//             <input type="text" ref={(input)=>{textInput=input}}/>
+//             <input type="button" value="Focus the text input" onClick={handleClick}/>
+//         </div>
+//     )
+// }
+// ReactDOM.render(<CustomTextInput/>,document.getElementById("root"));
+
+// function CustomTextInput(props){
+//     return (
+//         <div>
+//             <input ref={props.inputRef}/>
+//         </div>
+//     )
+// }
+// class Parent extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.inputElement=React.createRef();
+//     }
+//     render(){
+//         return <CustomTextInput inputRef={this.inputElement}/>
+//     }
+// }
+
+// class CustomTextInput extends React.Component {
+//     constructor(props) {
+//       super(props);
+  
+//       this.textInput = null;
+  
+//       this.setTextInputRef = element => {
+//         this.textInput = element;
+//       };
+  
+//       this.focusTextInput = () => {
+//         // 直接使用原生 API 使 text 输入框获得焦点
+//         if (this.textInput) this.textInput.focus();
+//       };
+//     }
+  
+//     componentDidMount() {
+//       // 渲染后文本框自动获得焦点
+//       this.focusTextInput();
+//     }
+  
+//     render() {
+//       // 使用 `ref` 的回调将 text 输入框的 DOM 节点存储到 React
+//       // 实例上（比如 this.textInput）
+//       return (
+//         <div>
+//           <input
+//             type="text"
+//             ref={this.setTextInputRef}
+//           />
+//           <input
+//             type="button"
+//             value="Focus the text input"
+//             onClick={this.focusTextInput}
+//           />
+//         </div>
+//       );
+//     }
+//   }
+// ReactDOM.render(<CustomTextInput/>,document.getElementById("root"));
+
+
+// class NameForm extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.handleSubmit=this.handleSubmit.bind(this);
+//     }
+//     handleSubmit(e){
+//         alert("a name was submitted "+this.input.value);
+//         e.preventDefault();
+//     }
+//     render(){
+//         return (
+//             <form onSubmit={this.handleSubmit}>
+//                 <label>
+//                     Name:<input defaultValue="lwf" type="text" ref={(input)=>this.input=input}/>
+//                 </label>
+//                 <input type="submit" value="Submit"/>
+//             </form>
+//         )
+//     }
+// }
+// ReactDOM.render(<NameForm/>,document.getElementById("root"));
+
+// class FileInput extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.handleSubmit=this.handleSubmit.bind(this);
+
+//     }
+//     handleSubmit(e){
+//         e.preventDefault();
+//         alert("the file is submitted is "+this.fileInput.files[0].name);
+//     } 
+//     render(){
+//         return (
+//             <form onSubmit={this.handleSubmit}>
+//                 <input type="file" ref={input=>{this.fileInput=input}}/>
+//                 <input type="submit" value="Submit"/>
+//             </form>
+//         )
+//     }
+// }
+// ReactDOM.render(<FileInput/>,document.getElementById("root"));
+
+
