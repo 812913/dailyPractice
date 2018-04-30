@@ -2,17 +2,17 @@ const React=require("react");
 const ReactDOM=require("react-dom");
 const createReatClass=require("create-react-class");
 //const h=require("react-hyperscript");
-const h=require("react-hyperscript");
-const {div,span,h1}=require("hyperscript-helpers")(h);
+// const h=require("react-hyperscript");
+// const {div,span,h1}=require("hyperscript-helpers")(h);
 
 const style=require("./css/style.css");
-const config=require("./json/config");
-const userImg=require("./img/user.png");
+// const config=require("./json/config");
+// const userImg=require("./img/user.png");
 
-function Htest(){
-        return div('#main',"hyperscript helpers");
-}
-ReactDOM.render(<Htest/>,document.getElementById("root"));
+// function Htest(){
+//         return div('#main',"hyperscript helpers");
+// }
+// ReactDOM.render(<Htest/>,document.getElementById("root"));
 
 // var Htest=createReatClass({
 //     render(){
@@ -773,4 +773,348 @@ ReactDOM.render(<Htest/>,document.getElementById("root"));
 // }
 // ReactDOM.render(<FileInput/>,document.getElementById("root"));
 
+// const ThemeContext=React.createContext("light");
 
+// function ThemeButton(props){
+//         return (
+//                 <ThemeContext.Consumer>
+//                         {theme=><Button {...props} theme={theme} />}
+//                 </ThemeContext.Consumer>
+//         )
+// }
+// function Toolbar(props){
+//         return (
+//                 <div>
+//                         <ThemeButton />
+//                 </div>
+//         )
+// }
+// class App extends React.Component{
+//         render(){
+//                 return(
+//                         <ThemeContext.Provider value="dark"><Toolbar/></ThemeContext.Provider>
+//                 )
+//         }
+// }
+
+// import {ThemeContext,themes} from "./theme-context.js";
+// import ThemeButton from "./themed-button.js";
+
+// function Toolbar(props){
+//         return (
+//                 <ThemeButton onClick={props.changeTheme}>
+//                         Change Theme
+//                 </ThemeButton>
+//         )
+// }
+
+// class App extends React.Component{
+//         constructor(props){
+//                 super(props);
+//                 this.state={theme:themes.light};
+//                 this.toggleTheme=this.toggleTheme.bind(this);
+//         }
+//         toggleTheme(){
+//                 this.setState(state=>({
+//                         theme:
+//                                 state.theme===themes.dark?themes.light:themes.dark
+//                 }))
+//         }
+//         render(){
+//                 return(
+//                         <div>
+//                                 <ThemeContext.Provider value={this.state.theme}>
+//                                         <Toolbar changeTheme={this.toggleTheme}/>
+//                                         <section>
+//                                                 <ThemeButton />
+//                                         </section>
+//                                 </ThemeContext.Provider>
+
+//                         </div>
+//                 )
+//         }
+// }
+// ReactDOM.render(<App/>,document.getElementById("root"));
+
+
+// import {ThemeContext,themes} from "./theme-context.js";
+// import ThemeButton from "./themed-button.js";
+
+// class App extends React.Component{
+//         constructor(props){
+//                 super(props);
+//                 this.state={theme:themes.light,toggleSheme:this.toggleTheme};
+//                 this.toggleTheme=()=>{
+//                         this.setState(state=>({
+//                                 theme:state.theme===themes.dark?themes.light:themes.dark
+//                         }))
+//                 }
+//         }
+       
+//         render(){
+//                 return(
+//                         <div>
+//                                 <ThemeContext.Provider value={this.state}>
+//                                        <Content/>
+//                                 </ThemeContext.Provider>
+
+//                         </div>
+//                 )
+//         }
+// }
+
+// function Content() {
+//         return (
+//           <div>
+//             <ThemeButton />
+//           </div>
+//         );
+//  }
+// ReactDOM.render(<App/>,document.getElementById("root"));
+
+// class Columns extends React.Component{
+//         render(){
+//                 return (
+//                         <React.Fragment>
+//                         <td></td>
+//                         <td></td>
+//                         </React.Fragment>
+//                 )
+//         }
+// }
+
+// funcion Glossary(props){
+//         return (
+//                 <dl>
+//                         {
+//                                 props.items.map((item)=>(
+//                                         <React.Fragment key={item.id}>
+//                                                 <dt>{item.term}</dt>
+//                                                 <dd>{item.description}</dd>
+//                                                 </React.Fragment>
+//                                 ))
+//                         }
+//                 </dl>
+//         )
+// }
+
+// var appRoot=document.getElementById("app-root");
+// var modalRoot=document.getElementById("modal-root");
+
+// class Modal extends React.Component{
+//         constructor(props){
+//                 super(props);
+//                 this.el=document.createElement("div");
+//         }
+
+//         componentDidMount(){
+//                 modalRoot.appendChild(this.el);
+//         }
+
+//         componentWillUnmount(){
+//                 modalRoot.removeChild(this.el);
+//         }
+//         render(){
+//                 return ReactDOM.createPortal(
+//                         this.props.children,
+//                         this.el
+//                 )
+//         }
+
+// }
+// class Parent extends React.Component{
+//         constructor(props){
+//                 super(props);
+//                 this.state={clicks:0};
+//                 this.handleClick=this.handleClick.bind(this);
+//         }
+//         handleClick(){
+//                 this.setState(prevState=>({
+//                         clicks:prevState.clicks+1
+//                 }))
+//         }
+//         render(){
+//                 return(
+//                         <div onClick={this.handleClick}>
+//                                 <p>Number of click:{this.state.clicks}</p>
+//                                 <p>Open up the browser DevTools
+//                                         to observe that the button
+//                                         is not a child of the div
+//                                         with the onClick handler.
+//                                 </p>
+//                                 <Modal><Child/></Modal>
+//                         </div>
+//                 )
+//         }
+// }
+        
+// function Child(){
+//         return (
+//                 <div className={style.modal}><button>Click</button></div>
+//         )
+// }
+// ReactDOM.render(<Parent />,appRoot)
+
+
+// class ErrorBoundary extends React.Component{
+//         constructor(props){
+//                 super(props);
+//                 this.state={error:null,errorInfo:null};
+//         }
+//         componentDidCatch(error,errorInfo){
+//                 this.setState({
+//                         error:error,
+//                         errorInfo:errorInfo
+//                 })
+//         }
+//         render(){
+//                 if(this.state.errorInfo){
+//                         return (
+//                                 <div>
+//                                         <h2>Something went wrong</h2>
+//                                         <details style={{whiteSpace:'pre-wrap'}}>
+//                                                 {this.state.error&&this.state.error.toString()}
+//                                                 <br/>
+//                                                 {this.state.errorInfo.componentStack}
+//                                         </details>
+//                                 </div>
+//                         )
+//                 }
+//                 return this.props.children;
+//         }
+// }
+
+// class BuggyCounter extends React.Component{
+//         constructor(props){
+//                 super(props);
+//                 this.state={counter:0};
+//                 this.handleClick=this.handleClick.bind(this);
+//         }
+//         handleClick(){
+//                 this.setState(({counter})=>({
+//                         counter:counter+1
+//                 })
+//                 )
+//         }
+//         render(){
+//                 if(this.state.counter==5){
+//                         throw new Error("I crashed");
+//                 }
+//                 return <h1 onClick={this.handleClick}>{this.state.counter}</h1>
+//         }
+// }
+// function App(){
+//         return (
+//                <div>
+//                <ErrorBoundary>
+//                        <BuggyCounter/>
+//                        <BuggyCounter/>
+//                </ErrorBoundary>
+//                <hr/>
+//                <ErrorBoundary>
+//                        <BuggyCounter/>
+//                        <BuggyCounter/>
+//                </ErrorBoundary>
+//                        </div>
+//         )
+// }
+// ReactDOM.render(<App/>,document.getElementById("root"));
+
+// class Cat extends React.Component{
+//         render(){
+//                 return (
+//                         <img src={require("./img/user.png")} style={{ position:"absolute",
+//                         left:this.props.mouse.x,
+//                         top:this.props.mouse.y}}/>
+
+//                 )
+//         }
+// }
+// class Mouse extends React.Component{
+//         constructor(props){
+//                 super(props);
+//                 this.handleMouseMove=this.handleMouseMove.bind(this);
+//                 this.state={
+//                         x:0,
+//                         y:0
+//                 }
+//         }
+//         handleMouseMove(e){
+//                 this.setState({
+//                         x:e.clientX,
+//                         y:e.clientY
+//                 })
+//         }
+//         render(){
+//                 var divStyle={
+//                         background:`url(${require("./img/1.jpg")})`,
+//                         height:"400px"      
+//                 }
+//                 return (
+//                        <div style={divStyle}  onMouseMove={this.handleMouseMove}>
+//                                 {/* <Cat mouse={this.state}/> */}
+//                                 {this.props.render(this.state)}
+//                         </div>
+//                 )
+//         }
+// }
+
+// class MouseTrace extends React.Component{
+//         render(){
+//                 return(
+//                         <div>
+//                                 <h1>Mouse the move around</h1>
+//                                 <Mouse render={mouse=>(
+//                                         <Cat mouse={mouse}/>
+//                                         )}/>
+//                         </div>
+//                 )
+//         }
+// }
+// ReactDOM.render(<MouseTrace/>,document.getElementById("root"));
+
+class Chosen extends React.Component {
+        componentDidMount() {
+          this.$el = $(this.el);
+          this.$el.chosen();
+      
+          this.handleChange = this.handleChange.bind(this);
+          this.$el.on('change', this.handleChange);
+        }
+        
+        componentDidUpdate(prevProps) {
+          if (prevProps.children !== this.props.children) {
+            this.$el.trigger("chosen:updated");
+          }
+        }
+      
+        componentWillUnmount() {
+          this.$el.off('change', this.handleChange);
+          this.$el.chosen('destroy');
+        }
+        
+        handleChange(e) {
+          this.props.onChange(e.target.value);
+        }
+      
+        render() {
+          return (
+            <div>
+              <select className={style.Chosen-select} ref={el => this.el = el}>
+                {this.props.children}
+              </select>
+            </div>
+          );
+        }
+      }
+      
+      function Example() {
+        return (
+          <Chosen onChange={value => console.log(value)}>
+            <option>vanilla</option>
+            <option>chocolate</option>
+            <option>strawberry</option>
+          </Chosen>
+        );
+      }
+ReactDOM.render(<Example/>,document.getElementById('root'));
