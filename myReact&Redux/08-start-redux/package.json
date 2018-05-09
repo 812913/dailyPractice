@@ -1,0 +1,17 @@
+{
+  "name": "08-start-redux",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts":{
+    "start":"node index"
+  },
+  "dependencies": {
+    "babel-preset-env": "^1.6.1",
+    "react": "^16.3.2",
+    "redux": "^4.0.0"
+  },
+  "devDependencies": {
+    "babel-register": "^6.26.0"
+  }
+}
