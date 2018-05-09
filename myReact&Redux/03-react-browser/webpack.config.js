@@ -1,0 +1,20 @@
+module.exports={
+    entry:__dirname+"/src/client",
+    output:{
+        path:__dirname+"/static/dist",
+        filename:'main.js'
+    },
+    module:{
+        rules:[
+            {
+                test:/(\.js|\.jsx)$/,
+                use:{
+                    loader:"babel-loader"
+                },
+                exclude:/node_modules/,
+               
+            }
+        ]
+    }
+}
+console.log(__dirname);
